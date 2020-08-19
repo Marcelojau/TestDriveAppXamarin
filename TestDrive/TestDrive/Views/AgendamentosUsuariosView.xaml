@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:TestDrive.Converters"
+             mc:Ignorable="d"
+             x:Class="TestDrive.Views.AgendamentosUsuariosView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AgendamentoConfirmadoConverter  x:Key="confirmadoConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView ItemsSource="{Binding Lista}" Margin="25" SelectedItem="{Binding AgendamentoSelecionado}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding DataFormatada}" FontSize="20" VerticalOptions="Center" 
+                                   TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmadoConverter}}"/>
+                            <Label Text=" - " VerticalOptions="Center" 
+                                   TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmadoConverter}}"/>
+                            <Label Text="{Binding Modelo}" FontAttributes="Bold" VerticalOptions="Center" 
+                                   TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmadoConverter}}"/>
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
